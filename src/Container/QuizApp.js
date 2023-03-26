@@ -8,6 +8,7 @@ function QuizApp() {
 
     const [ data, setData ] = useState(false);
     const [step, setStep] = useState(1);
+    const [showquiz, setShowQuiz] = useState(false);
 
     function getTimer(){
         setStep(2);
@@ -15,6 +16,13 @@ function QuizApp() {
 
     function clickback() {
         setStep(1);
+    }
+
+    function showQuizRule(){
+        setData(true);
+        setTimeout(() => {
+            setShowQuiz(true);
+        }, 500)
     }
 
   return (
@@ -81,13 +89,13 @@ function QuizApp() {
                     </div>
 
                     <div className='button-container'>
-                        <button onClick={() => setData(true)}>
+                        <button onClick={() => showQuizRule()}>
                             Take Quiz
                         </button>
                     </div>
 
 
-                    {data && <div className='Quiz-Rule'>
+                    {data && <div className={`Quiz-Rule ${showquiz ? 'showQuizRule' : ''}`}>
                         <h3>Quiz Rules</h3>
                         <p>10 Mins</p>
                         <p>10 Question</p>
@@ -102,7 +110,7 @@ function QuizApp() {
             {
                 step === 2 &&
                 <>
-                    <div>
+                    <div className='timer'>
                         <Timer clickback={clickback} />
 
                     </div>

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import data from './Data.json';
+import './Timer.css';
 
 function Timer({ clickback }) {
 
@@ -57,23 +58,56 @@ function Timer({ clickback }) {
             !showresultpage &&
             <>
                 <div>
-                    Question {question + 1}<br />
-                    {data[question].question}
+                    <span>Q {question + 1})  </span>
+                    {data[question].question} Option.
                 </div>
                 
-                <div>
+                {/* <div>
                     {
                         data[question].option.map((item, index) => {
                             return (
-                                <div key={index}>
-                                    <label style={{ fontSize: '18px' }}>{item}</label>
-                                    <input type="radio" name="name1" value={item} onChange={() => setAnswer(item)} checked={answer === item} />
+                                <div key={index} style={{ display: 'flex', width: '100%', gap: '10px', alignItems: 'center' }}>
+                                    <label style={{ fontSize: '27px' }} className="container">{item}</label>
+                                        <input type="radio" name="name1" value={item} onChange={() => setAnswer(item)} checked={answer === item} />
+                                        <span className="checkmark"></span>
                                     <br />
                                 </div>
                             )
                         })
                     }
+                </div> */}
+
+                <div>
+                    {
+                        data[question].option.map((item, index) => {
+                            return (
+                                <label className="container">
+                                    <span>{item}</span>
+                                    <input type="radio" name="name1" value={item} onChange={() => setAnswer(item)} checked={answer === item} />
+                                    <span className="checkmark" style={{ marginTop: '6px' }}></span>
+                                </label>
+                            )
+                        })
+                    }
                 </div>
+
+
+                {/* <label class="container">One
+                    <input type="radio" name="radio" />
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Two
+                    <input type="radio" name="radio" />
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Three
+                    <input type="radio" name="radio" />
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Four
+                    <input type="radio" name="radio" />
+                    <span class="checkmark"></span>
+                </label> */}
 
                 <br/><br />
                 <h3>Points :: {points}</h3>
